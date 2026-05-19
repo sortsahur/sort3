@@ -42,7 +42,7 @@ void* consumer(void* args){
     int id = *(int*) args;
     
     while(true){
-        lock(&mutex);
+        lock(&mutex);   
         if(count == 0){
             unlock(&mutex);
             continue;

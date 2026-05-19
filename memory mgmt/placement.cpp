@@ -24,7 +24,7 @@ void print(vector<int> &parts, vector<process> &procs, int pr){
 void first(vector<int> parts, vector<process> procs, int pa, int pr){
     for(int i = 0; i<pr; i++){
         for(int j = 0; j<pa; j++){
-            if(procs[i].size < parts[j]){
+            if(procs[i].size <= parts[j]){
                 procs[i].partid = j+1;
                 parts[j] -= procs[i].size;
                 procs[i].hole = parts[j];

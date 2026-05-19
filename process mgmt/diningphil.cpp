@@ -27,7 +27,7 @@ void eat(int id){
 }
 
 void test(int id){
-    if(state[id] == HUNGRY && state[(id-1)%N] != EATING && state[(id+1)%N] != EATING){
+    if(state[id] == HUNGRY && state[(id+N-1)%N] != EATING && state[(id+1)%N] != EATING){
         state[id] = EATING;
         up(&s[id]);
     }

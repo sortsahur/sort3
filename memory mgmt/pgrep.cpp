@@ -21,7 +21,7 @@ int fifo(string ref, vector<char> frames){
             pf++;
         }
 
-        cout << "\t" << c << "\t" << frames[0] << "\t" << frames[1] << "\t" << frames[2] << "\t" << frames[3] << "\t1" << endl;
+        cout << "\t" << c << "\t" << frames[0] << "\t" << frames[1] << "\t" << frames[2] << "\t" << frames[3] << "\t" << (absent ? 1 : 0) << endl;
     }
 
     cout << "\nNo. of page faults that occured using FIFO: = " << pf;
@@ -32,7 +32,7 @@ int fifo(string ref, vector<char> frames){
 
 int lru(string ref, vector<char> frames){
     int pf = 0;
-    cout << "\n\nFIFO:\n\tC\tF0\tF1\tF2\tF3\tPF" << endl;
+    cout << "\n\nLRU:\n\tC\tF0\tF1\tF2\tF3\tPF" << endl;
 
     unordered_map<char, int> timestamps;
 
@@ -59,7 +59,7 @@ int lru(string ref, vector<char> frames){
             frames[replace] = ref[i];
         }
 
-        cout << "\t" << ref[i] << "\t" << frames[0] << "\t" << frames[1] << "\t" << frames[2] << "\t" << frames[3] << "\t1" << endl;
+        cout << "\t" << ref[i] << "\t" << frames[0] << "\t" << frames[1] << "\t" << frames[2] << "\t" << frames[3] << "\t" << (absent ? 1 : 0) <<endl;
         timestamps[ref[i]] = i;
     }
 
@@ -71,7 +71,7 @@ int lru(string ref, vector<char> frames){
 
 int opt(string ref, vector<char> frames){
     int pf = 0;
-    cout << "\n\nFIFO:\n\tC\tF0\tF1\tF2\tF3\tPF" << endl;
+    cout << "\n\nOPT:\n\tC\tF0\tF1\tF2\tF3\tPF" << endl;
 
     for(int i = 0; i<ref.length(); i++){
         bool absent = true;
@@ -90,7 +90,7 @@ int opt(string ref, vector<char> frames){
                     int nextocc = INT_MAX;
 
                     for(int k = i+1; k<ref.length(); k++){
-                        if(ref[k] == frames[j]) {nextocc = j; break;} 
+                        if(ref[k] == frames[j]) {nextocc = k; break;} 
                     }
 
                     if(nextocc>far) far = nextocc, replace = j;
@@ -100,7 +100,7 @@ int opt(string ref, vector<char> frames){
             frames[replace] = ref[i];
         }
 
-        cout << "\t" << ref[i] << "\t" << frames[0] << "\t" << frames[1] << "\t" << frames[2] << "\t" << frames[3] << "\t1" << endl;
+        cout << "\t" << ref[i] << "\t" << frames[0] << "\t" << frames[1] << "\t" << frames[2] << "\t" << frames[3] << "\t"<< (absent ? 1 : 0) << endl;
     }
 
     cout << "\nNo. of page faults that occured using OPTIMAL: = " << pf;
